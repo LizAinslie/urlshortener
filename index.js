@@ -11,12 +11,13 @@ app.get('/', (req, res)=>{
 	res.render('index.ejs')
 })
 
-app.post('/add', (req, res) => {
+app.get('/add', (req, res, next) => {
 	rethinkdb.table('links').insert({
 	    id: randomstring.generate(7),
-	    url: req.body.url
+	    url: req.query.url
 	}).run().then(link => {
 		res.render('finish.ejs', { url: `https://url.railrunner16.me/l/${link.id}` })
+		next()
 	})
 })
 
