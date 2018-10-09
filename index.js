@@ -26,3 +26,5 @@ app.get('/l/:id', (req, res) => {
         res.redirect(link.url)
     })
 })
+
+app.listen(3200)
